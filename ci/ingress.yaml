@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rolphopen
+  annotations:
+    acme.cert-manager.io/http01-edit-in-place: "true"
+    cert-manager.io/issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - rolphopen.com
+    secretName: rolphopen-com
+  rules:
+  - host: rolphopen.com
+    http:
+      paths:
+      - backend:
+          service: 
+            name: rolphopen
+            port:
+              number: 8080
+        path: /
+        pathType: Prefix

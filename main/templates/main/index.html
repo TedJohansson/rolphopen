@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}
+<title>Rolph Open 2023</title>
+{% endblock %}
+{% block content %}
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+    <div class="w3-content">
+        <div class="w3">
+            <h1>Rolph Open 2024</h1>
+            <h3>Info</h3>
+            <p><b>Plats</b>: <a href="https://ringenas.com/" target=”_blank”>Ringenäs GK, Halmstad</a></p>
+            <p><b>Datum</b>: 7 September</p>
+            <p><b>Tee times</b>: 10:30, 10:40, 10:50, 11:00</p>
+            <p><b>Övrigt</b>:<br/> 
+            Middag: kl 19,00<br/>
+            Incheckning är kl. 15:00 och utcheckning är kl. 10.00.<br/>
+            Frukost serveras mellan kl. 07.00 - 10.00.<br/>
+<br/>
+            Paketpriset: 2 395:-/pp<br/>
+<br/>
+            En dygns logi med frukostbuffé, en greenfee för 18 hål på Ringenäs Golfklubb samt<br/>
+            en två-rätters middag i en underbar familjär atmosfär.<br/>
+            Vi bjuder på välkomstgåva, banguide och hyrvagn.<br/>
+            </p>
+        </div>
+    </div>
+</div>
+  
+
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3">
+      <h1>Regler</h1>
+      <br/>
+      <h3>Skötselregler</h3>
+      <p><b>Kasta klubba</b>: 2 straffslag</p>
+      <p><b>Slå klubba i annat än boll aggressivt</b>: 1 straffslag</p>
+      <br/>
+      <h3>HCP</h3>
+      <p>Spelare med lägst spelhandicap multiplicerar sin spelhandicap med 0,5. Spelaren med den högre spelhandicapen multicerar sin spelhandicap med 0,2.</p>
+      <br/>
+      <h3>Scramble</h3>
+      <p>
+        Båda spelarna i laget slår ut från varje tee och väljer sedan vilken boll de vill fortsätta med, båda spelarna spelar från det valda läget och väljer vilken boll de fortsätter med ända till hål.
+      </p>
+      <p>
+        Varje lag måste minst ta 1/3 av båda spelarnas utslag från tee. Det vill säga att i det fall ett lag består av 2 spelar måste laget välja minst 6 utlag från lag medlem 1 och 6 utslag från lag medlem 2. De 6 andra tee slagen får laget välja antingen lag medlem 1 eller 2. 
+      </p>
+      <p>
+        I fairway, rough eller bunker får båda spelarna i laget plocka upp sin boll och plasera den inom ett scorekorts avstånd från den boll som teamet har valt. Bollen får inte heller plaseras närmare flaggan. 
+      </p>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3">
+      <h1>Lag</h1>
+      <br/>
+      <div class="w3-container w3-center">
+        {% for team in upcoming_teams %}
+            {% if forloop.first %}<div class="card-group">{% endif %}
+            {% if forloop.counter0|divisibleby:3 and not forloop.first %}</div><div class="card-group">{% endif %}
+            <div class="card text-white mb-3" style="max-width: 18rem;">
+                <div class="card-header {% if forloop.counter0|divisibleby:2 %}bg-primary {% else %} bg-success {% endif %}">Lag</div>
+                <div class="card-body bg-secondary ">
+                {% for player in team.players.all %}
+                    <p class="card-text">{{ player }}</p>
+                {% endfor %}
+                </div>
+            </div>
+            {% if forloop.last %}</div>{% endif %}
+        {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}
+<title>Rolph Open Team Selection</title>
+{% endblock %}
+{% block head %}
+<meta http-equiv="refresh" content="10">
+{% endblock %}
+{% block content %}
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+    <div class="w3-content">
+        <div class="w3">
+            <h1>Live val av lag 2024</h1>
+            <p>Här kommer alla lag slumpmässigt väljas 2024-05-01 13:30</p>
+        </div>
+    </div>
+</div>
+
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3">
+      <h1>Lag</h1>
+      <br/>
+      <div class="w3-container w3-center">
+        {% for team in upcoming_teams %}
+            {% if forloop.first %}<div class="card-group">{% endif %}
+            {% if forloop.counter0|divisibleby:3 and not forloop.first %}</div><div class="card-group">{% endif %}
+            <div class="card text-white mb-3" style="max-width: 18rem;">
+                <div class="card-header bg-primary">Lag</div>
+                <div class="card-body bg-secondary">
+                {% for player in team.players.all %}
+                    <p class="card-text">{{ player }}</p>
+                {% endfor %}
+                </div>
+            </div>
+            {% if forloop.last %}</div>{% endif %}
+        {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
